@@ -77,5 +77,5 @@ typings/
 .serverless
 
 # Compiled TypeScript files
-dist
+
 
