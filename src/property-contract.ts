@@ -27,7 +27,7 @@ export class PropertiesContract extends Contract {
 
         for (let i = 0; i < assets.length; i++) {
             
-            await ctx.stub.putState('Properties' + i, Buffer.from(JSON.stringify(assets[i])));
+            await ctx.stub.putState(assets[i].propertyNumber, Buffer.from(JSON.stringify(assets[i])));
             console.info('Added <--> ', assets[i]);
         }
         console.info('============= END : Initialize Ledger ===========');
