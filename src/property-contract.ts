@@ -21,7 +21,7 @@ export class PropertiesContract extends Contract {
                 value: 12332,
                 location : '12 avenue,richar street , california',
                 type: 'single',
-                propertyNumber: 'P100002'
+                propertyNumber: 'P1000002'
             }
         ];
 
@@ -45,7 +45,8 @@ export class PropertiesContract extends Contract {
     public async createProperty(ctx: Context, propertyNumber: string, propertyArea: string, cost: number, type: string, location: string,value: number, ownerName: string) {
        
         const assetDetailsAsBytes = await ctx.stub.getState(propertyNumber); // get the car from chaincode state
-        if (assetDetailsAsBytes || assetDetailsAsBytes.length !== 0) {
+        console.log(assetDetailsAsBytes)
+        if (assetDetailsAsBytes && assetDetailsAsBytes.length >= 0) {
             throw new Error(`${propertyNumber} already exists`);
         }
 
