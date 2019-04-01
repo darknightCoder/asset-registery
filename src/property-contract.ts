@@ -35,9 +35,7 @@ export class PropertiesContract extends Contract {
 
     public async queryAsset(ctx: Context, assetNumber: string): Promise<string> {
         const assetAsBytes = await ctx.stub.getState(assetNumber); // get the car from chaincode state
-        if (!assetAsBytes || assetAsBytes.length === 0) {
-            throw new Error(`${assetNumber} does not exist`);
-        }
+       
         console.log(assetAsBytes.toString());
         return assetAsBytes.toString();
     }
@@ -45,10 +43,8 @@ export class PropertiesContract extends Contract {
     public async createProperty(ctx: Context, propertyNumber: string, propertyArea: string, cost: number, type: string, location: string,value: number, ownerName: string) {
        
         const assetDetailsAsBytes = await ctx.stub.getState(propertyNumber); // get the car from chaincode state
-        console.log(assetDetailsAsBytes)
-        if (assetDetailsAsBytes && assetDetailsAsBytes.length >= 0) {
-            throw new Error(`${propertyNumber} already exists`);
-        }
+       
+       
 
         const asset: AssetDetails = {
             propertyArea,
@@ -98,9 +94,7 @@ export class PropertiesContract extends Contract {
         console.info('============= START : changeOwner ===========');
 
         const assetDetailsAsBytes = await ctx.stub.getState(propertyNumber); // get the car from chaincode state
-        if (!assetDetailsAsBytes || assetDetailsAsBytes.length === 0) {
-            throw new Error(`${propertyNumber} does not exist`);
-        }
+
         const asset: AssetDetails = JSON.parse(assetDetailsAsBytes.toString());
         asset.ownerName = newOwner;
 
